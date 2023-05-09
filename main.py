@@ -35,6 +35,7 @@ def get_minutes():
 
 #СМС
 def choose_messages():
+    import os
     # Предоставление вариантов выбора для количества сообщений
     print("Выберите количество сообщений:")
     print("1. 200 сообщений")
@@ -71,7 +72,7 @@ def choose_messages():
         messages = 3000
 
     return messages
-
+    os.system('cls')
 
 #ГБ
 def choose_data_usage():
@@ -105,60 +106,7 @@ def choose_data_usage():
         
     return data_usage
 
-
-
-#Операторы
-
-#def select_operator():
-#    # Предоставление вариантов выбора для оператора
-#    print("Выберите оператора:")
-#    print("1. MTS")
-#    print("2. TELE2")
-#    print("3. megafon")
-#    print("4. beeline")
-#    operator_choice = input("Введите номер выбранного варианта:")
-    
-#    # Проверка на корректность ввода и получение оператора в соответствии с выбором пользователя
-#    while operator_choice not in ["1", "2", "3", "4"]:
-#        operator_choice = input("Некорректный выбор. Введите номер выбранного варианта:")
-    
-#    if operator_choice == "1":
-#        operator_user = "MTS"
-#    elif operator_choice == "2":
-#        operator_user = "TELE2"
-#    elif operator_choice == "3":
-#        operator_user = "megafon"
-#    elif operator_choice == "4":
-#        operator_user = "beeline"
-    
-#    return operator_user
-
-
-
-
-
-
-
-tariff_plans = {
-"My_Online+": {"minute_limit": 600, "message_limit": 400,  "data_limit": 35, "operator":str("TELE2"), "nonthly_cost":550}, 
-"Black": {"minute_limit": 1000, "message_limit": 1000,  "data_limit": 50, "operator":str("TELE2"), "nonthly_cost":800},
-"Super_Online+": {"minute_limit": 600, "message_limit": 500,  "data_limit": 45, "operator":str("TELE2"), "nonthly_cost":600},
-"My_Online": {"minute_limit": 600, "message_limit": 400,  "data_limit": 20, "operator":str("TELE2"), "nonthly_cost":450},
-"My_conversation": {"minute_limit": 250, "message_limit": 300,  "data_limit": 10, "operator":str("TELE2"), "nonthly_cost":380},
-"Premium": {"minute_limit": 2000, "message_limit": 500,  "data_limit": 60, "operator":str("TELE2"), "nonthly_cost":1500},
-"Warm_welcome_S": {"minute_limit": 250, "message_limit": 500,  "data_limit": 10, "operator":str("megafon"), "nonthly_cost":380},
-"Warm_welcome_L": {"minute_limit": 600, "message_limit": 700,  "data_limit": 35, "operator":str("megafon"), "nonthly_cost":550},
-"MegaTarif": {"minute_limit": 600, "message_limit": 500,  "data_limit": 35, "operator":str("megafon"), "nonthly_cost":550},
-"Maximum": {"minute_limit": 900, "message_limit": 200,  "data_limit": 45, "operator":str("megafon"), "nonthly_cost":750},
-"VIP": {"minute_limit": 1200, "message_limit": 300,  "data_limit": 50, "operator":str("megafon"), "nonthly_cost":1000},
-"Permium": {"minute_limit": 3000, "message_limit": 3000,  "data_limit": 60, "operator":str("megafon"), "nonthly_cost":2000},
-"Bee_Bazya": {"minute_limit": 600, "message_limit": 100,  "data_limit": 45, "operator":str("Beeline"), "nonthly_cost":650},
-"Dragon_Jung": {"minute_limit": 500, "message_limit": 500,  "data_limit": 45, "operator":str("Beeline"), "nonthly_cost":580},
-"cat_pus": {"minute_limit": 900, "message_limit": 800,  "data_limit": 45, "operator":str("Beeline"), "nonthly_cost":730},
-"panda_tapa": {"minute_limit": 300, "message_limit": 700,  "data_limit": 20, "operator":str("Beeline"), "nonthly_cost":470},
-"robot_ping": {"minute_limit": 500, "message_limit": 600,  "data_limit": 35, "operator":str("Beeline"), "nonthly_cost":530},
-"To_the_maximum!": {"minute_limit": 3000, "message_limit": 3000,  "data_limit": 60, "operator":str("Beeline"), "nonthly_cost":1800}
-}
+from tariff_plans import tariff_plans
 
 #Вызов функции для выбора минут
 minutes = get_minutes()
@@ -194,8 +142,8 @@ elif operator_choice == "3":
 elif operator_choice == "4":
     operator_user = "beeline"
 
-#operator = select_operator()
-#print("Выбран оператор:", operator_user)
+operator = select_operator()
+print("Выбран оператор:", operator_user)
 
 
 for tariff_name, tariff_params in tariff_plans.items():
