@@ -45,7 +45,7 @@ for tariff_name, tariff_params in tariff_plans.items():
         recommended_tariff = tariff_name
         break
 
-#import animation
+import animation
 
 # Предоставление рекомендации наиболее выгодного тарифа
 print("Рекомендуем вам тарифный план:", recommended_tariff)
@@ -99,7 +99,7 @@ if replace == "y":
             recommended_tariff = tariff_name
             break
 
-    #import animation
+    import animation
 
     print("Рекомендуем вам тарифный план:", recommended_tariff)
     for tariff_name, tariff_params in tariff_plans.items():
@@ -121,7 +121,7 @@ if replace == "n":
     # Запрос подтверждения выбранного тарифа
     confirm = input("Хотите подключить тарифный план " + recommended_tariff + "? (y/n)")
     if confirm == "y":
-        #import animation
+        import animation
         print("Тарифный план", recommended_tariff, "успешно подключен.")
         print("Ежемесячная плата составит:", tariff_plans[recommended_tariff]["nonthly_cost"], "rublikov.")
     else:
