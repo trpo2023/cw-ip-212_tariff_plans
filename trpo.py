@@ -1,6 +1,10 @@
 # -*- coding: cp1251 -*-
-
+from interface import main_menu
+from interface import get_minutes
+from interface import choose_messages
+from interface import choose_data_usage
 from tariff_plans import tariff_plans
+
 
 #Вызов функции для выбора минут
 minutes = get_minutes()
