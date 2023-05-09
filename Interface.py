@@ -10,6 +10,8 @@ def main_menu():
 
     choice = input("Введите номер выбранного варианта:")
     if choice == "1":
+        trpo.main_func()
+    else choice == "2":
         print_tariff_plans()
     elif choice == "3":
         print("До свидания!")
