@@ -1,4 +1,9 @@
 # -*- coding: cp1251 -*-
+# для очищения консоли
+import os
+def clear_console():
+    os.system('cls')
+
 from interface import main_menu
 from interface import get_minutes
 from interface import choose_messages
@@ -10,13 +15,29 @@ from tariff_plans import tariff_plans
 minutes = get_minutes()
 print(f"Вы выбрали {minutes} минут")
 
+# для очищения консоли
+print("Some output...")
+clear_console()
+
+
 #Вызов функции для выбора СМС
 messages = choose_messages()
 print(f"Вы выбрали {messages} сообщений")
 
+# для очищения консоли
+print("Some output...")
+clear_console()
+
+
 #Вызов функции для выбора ГБ
 data_usage = choose_data_usage()
 print("Вы выбрали", data_usage, "ГБ интернет-трафика.")
+
+
+# для очищения консоли
+print("Some output...")
+clear_console()
+
 
 
 
@@ -43,6 +64,10 @@ elif operator_choice == "4":
 operator = select_operator()
 print("Выбран оператор:", operator_user)
 
+    # для очищения консоли
+print("Some output...")
+clear_console()
+
 
 for tariff_name, tariff_params in tariff_plans.items():
     if minutes <= tariff_params["minute_limit"] and messages <= tariff_params["message_limit"] and data_usage <= tariff_params["data_limit"] and operator_user <= tariff_params["operator"] :
@@ -62,6 +87,10 @@ while replace not in ["y", "n"]:
     replace = input("Я не расспознал, что вы от меня хотите, повторите снова.\n Если вас не устраивает тарифный план, вы можете выбрать другой (y/n)")
 if replace == "y":
     print("Выберите другой тариф")
+
+    # для очищения консоли
+    print("Some output...")
+    clear_console()
  
 
 
@@ -69,13 +98,25 @@ if replace == "y":
     minutes = get_minutes()
     print(f"Вы выбрали {minutes} минут")
 
+    # для очищения консоли
+    print("Some output...")
+    clear_console()
+
     #Вызов функции для выбора СМС
     messages = choose_messages()
     print(f"Вы выбрали {messages} сообщений")
 
+    # для очищения консоли
+    print("Some output...")
+    clear_console()    
+
     #Вызов функции для выбора ГБ
     data_usage = choose_data_usage()
     print("Вы выбрали", data_usage, "ГБ интернет-трафика.")
+
+    # для очищения консоли
+    print("Some output...")
+    clear_console()
 
     # Предоставление вариантов выбора для оператора
     print("Выберите оператора:")
@@ -86,6 +127,10 @@ if replace == "y":
     operator_choice = input("Введите номер выбранного варианта:")
     while operator_choice not in ["1", "2", "3", "4"]:
         operator_choice = input("Некорректный выбор. Введите номер выбранного варианта:")
+
+        # для очищения консоли
+    print("Some output...")
+    clear_console()
 
     # Получение оператора в соответствии с выбором пользователя
     if operator_choice == "1":
@@ -112,6 +157,11 @@ if replace == "y":
     confirm = input("Хотите подключить тарифный план " + recommended_tariff + "? (y/n)")
     if confirm == "y":
 
+
+        # для очищения консоли
+        print("Some output...")
+        clear_console()
+
         #import animation
         print("Тарифный план", recommended_tariff, "успешно подключен.")
         print("Ежемесячная плата составит:", tariff_plans[recommended_tariff]["nonthly_cost"], "rublikov.")
@@ -120,6 +170,8 @@ if replace == "y":
 
     # Завершение работы приложения
     print("Спасибо за использование нашего приложения!")
+
+      
 
 if replace == "n":
     # Запрос подтверждения выбранного тарифа
@@ -130,6 +182,9 @@ if replace == "n":
         print("Ежемесячная плата составит:", tariff_plans[recommended_tariff]["nonthly_cost"], "rublikov.")
     else:
         print("Подключение тарифного плана отменено.")
+            # для очищения консоли
+    print("Some output...")
+    clear_console()
 
     # Завершение работы приложения
     print("Спасибо за использование нашего приложения!")
