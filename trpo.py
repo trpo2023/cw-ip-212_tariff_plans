@@ -14,14 +14,18 @@ def main_menu():
         choice = input("Выберите опцию (введите номер): ")
 
         if choice == "1":
+            
             import animation
             choice_tariff()
+            
         elif choice == "2":
+            
             import animation
             from print_tariff_plans import print_tariff_plans
             print_tariff_plans()
         elif choice == "3":
             # выйти из программы
+            
             print("Выход из программы...")
             break
         else:
