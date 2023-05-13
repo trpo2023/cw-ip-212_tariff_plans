@@ -1,4 +1,6 @@
-from tariff_plans import tariff_plans
+import json
+with open('tariff_plans.json', 'r') as f:
+    tariff_plans = json.load(f)
 def print_tariff_plans():
     for plan_name, tariff_params in tariff_plans.items():
         print(f"Тариф {plan_name}:")
