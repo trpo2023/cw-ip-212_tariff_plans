@@ -18,7 +18,7 @@ def main_menu():
             choice_tariff()
         elif choice == "2":
             import animation
-            from tariff_plans_print import print_tariff_plans
+            from print_tariff_plans import print_tariff_plans
             print_tariff_plans()
         elif choice == "3":
             # выйти из программы
