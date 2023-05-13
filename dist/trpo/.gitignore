@@ -1,8 +1,0 @@
-tariff_plans.json
-*.jar
-*.class
-*.tmp 
-*.log
-/build/
-/__pycache__/
-trpo.spec
