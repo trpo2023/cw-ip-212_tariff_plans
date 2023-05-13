@@ -1,1 +1,7 @@
-tariff_plans.json, get-pip.py
+tariff_plans.json
+*.jar
+*.class
+.tmp 
+.log
+/build/
+/__pycache__/
