@@ -1,8 +1,16 @@
 # -*- coding: cp1251 -*-
 # для очищения консоли
 import os
+
+
 def clear_console():
     os.system('cls')
+
+
+import json
+
+with open('tariff_plans.json', 'r') as f:
+    tariff_plans = json.load(f)
 
 
 def get_minutes():
@@ -37,6 +45,8 @@ def get_minutes():
 
 
 messages = None
+
+
 def choose_messages():
     global messages
     # Предоставление вариантов выбора для количества сообщений
@@ -77,8 +87,9 @@ def choose_messages():
     return messages
 
 
-
 data_usage = None
+
+
 def choose_data_usage():
     # Предоставление вариантов выбора для объема интернет-трафика
     global data_usage
@@ -112,15 +123,13 @@ def choose_data_usage():
     return data_usage
 
 
+# from interface import main_menu
+# from interface import get_minutes
+# from interface import choose_messages
+# from interface import choose_data_usage
+#from tariff_plans import tariff_plans
 
-#from interface import main_menu
-#from interface import get_minutes
-#from interface import choose_messages
-#from interface import choose_data_usage
-from tariff_plans import tariff_plans
-
-
-#Вызов функции для выбора минут
+# Вызов функции для выбора минут
 minutes = get_minutes()
 print(f"Вы выбрали {minutes} минут")
 
@@ -128,8 +137,7 @@ print(f"Вы выбрали {minutes} минут")
 print("Some output...")
 clear_console()
 
-
-#Вызов функции для выбора СМС
+# Вызов функции для выбора СМС
 messages = choose_messages()
 print(f"Вы выбрали {messages} сообщений")
 
@@ -137,18 +145,13 @@ print(f"Вы выбрали {messages} сообщений")
 print("Some output...")
 clear_console()
 
-
-#Вызов функции для выбора ГБ
+# Вызов функции для выбора ГБ
 data_usage = choose_data_usage()
 print("Вы выбрали", data_usage, "ГБ интернет-трафика.")
-
 
 # для очищения консоли
 print("Some output...")
 clear_console()
-
-
-
 
 # Предоставление вариантов выбора для оператора
 print("Выберите оператора:")
@@ -170,16 +173,16 @@ elif operator_choice == "3":
 elif operator_choice == "4":
     operator_user = "beeline"
 
-operator = select_operator()
+
 print("Выбран оператор:", operator_user)
 
-    # для очищения консоли
+# для очищения консоли
 print("Some output...")
 clear_console()
 
-
 for tariff_name, tariff_params in tariff_plans.items():
-    if minutes <= tariff_params["minute_limit"] and messages <= tariff_params["message_limit"] and data_usage <= tariff_params["data_limit"] and operator_user <= tariff_params["operator"] :
+    if minutes <= tariff_params["minute_limit"] and messages <= tariff_params["message_limit"] and data_usage <= \
+            tariff_params["data_limit"] and operator_user <= tariff_params["operator"]:
         recommended_tariff = tariff_name
         break
 
@@ -191,19 +194,18 @@ print("Колличество сообщений:", tariff_params["message_limit
 print("Колличество минут:", tariff_params["minute_limit"])
 print("Колличество интернета в ГБ:", tariff_params["data_limit"])
 
-replace =input("Если вас не устраивает тарифный план, вы можете выбрать другой (y/n)")
+replace = input("Если вас не устраивает тарифный план, вы можете выбрать другой (y/n)")
 while replace not in ["y", "n"]:
-    replace = input("Я не расспознал, что вы от меня хотите, повторите снова.\n Если вас не устраивает тарифный план, вы можете выбрать другой (y/n)")
+    replace = input(
+        "Я не расспознал, что вы от меня хотите, повторите снова.\n Если вас не устраивает тарифный план, вы можете выбрать другой (y/n)")
 if replace == "y":
     print("Выберите другой тариф")
 
     # для очищения консоли
     print("Some output...")
     clear_console()
- 
 
-
-    #Вызов функции для выбора минут
+    # Вызов функции для выбора минут
     minutes = get_minutes()
     print(f"Вы выбрали {minutes} минут")
 
@@ -211,15 +213,15 @@ if replace == "y":
     print("Some output...")
     clear_console()
 
-    #Вызов функции для выбора СМС
+    # Вызов функции для выбора СМС
     messages = choose_messages()
     print(f"Вы выбрали {messages} сообщений")
 
     # для очищения консоли
     print("Some output...")
-    clear_console()    
+    clear_console()
 
-    #Вызов функции для выбора ГБ
+    # Вызов функции для выбора ГБ
     data_usage = choose_data_usage()
     print("Вы выбрали", data_usage, "ГБ интернет-трафика.")
 
@@ -261,17 +263,17 @@ if replace == "y":
 
     print("Рекомендуем вам тарифный план:", recommended_tariff)
     for tariff_name, tariff_params in tariff_plans.items():
-        if tariff_name != recommended_tariff and tariff_params["nonthly_cost"] < tariff_plans[recommended_tariff]["nonthly_cost"]:
+        if tariff_name != recommended_tariff and tariff_params["nonthly_cost"] < tariff_plans[recommended_tariff][
+            "nonthly_cost"]:
             print("Также вы можете рассмотреть тарифный план", tariff_name, "с более выгодной ценой.")
     confirm = input("Хотите подключить тарифный план " + recommended_tariff + "? (y/n)")
     if confirm == "y":
-
 
         # для очищения консоли
         print("Some output...")
         clear_console()
 
-        #import animation
+        # import animation
         print("Тарифный план", recommended_tariff, "успешно подключен.")
         print("Ежемесячная плата составит:", tariff_plans[recommended_tariff]["nonthly_cost"], "rublikov.")
     else:
@@ -280,18 +282,17 @@ if replace == "y":
     # Завершение работы приложения
     print("Спасибо за использование нашего приложения!")
 
-      
-
 if replace == "n":
     # Запрос подтверждения выбранного тарифа
     confirm = input("Хотите подключить тарифный план " + recommended_tariff + "? (y/n)")
     if confirm == "y":
         import animation
+
         print("Тарифный план", recommended_tariff, "успешно подключен.")
         print("Ежемесячная плата составит:", tariff_plans[recommended_tariff]["nonthly_cost"], "rublikov.")
     else:
         print("Подключение тарифного плана отменено.")
-            # для очищения консоли
+        # для очищения консоли
     print("Some output...")
     clear_console()
 
