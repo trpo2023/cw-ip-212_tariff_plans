@@ -5,3 +5,4 @@ tariff_plans.json
 .log
 /build/
 /__pycache__/
+trpo.spec
