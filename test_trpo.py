@@ -2,7 +2,11 @@ import unittest
 from unittest.mock import patch
 from io import StringIO
 import trpo
+import json
 
+with open('tariff_plans.json', 'r') as f:
+    tariff_plans = json.load(f)
+    
 class TestTRPO(unittest.TestCase):
     def test_calculate_total_cost(self):
         # Тестирование функции calculate_total_cost
