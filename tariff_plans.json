@@ -10,7 +10,7 @@
 "My_Online+": {"minute_limit": 600, "message_limit": 400,  "data_limit": 35, "operator":"TELE2", "nonthly_cost":550},
 "My_Online": {"minute_limit": 600, "message_limit": 400,  "data_limit": 20, "operator":"TELE2", "nonthly_cost":450},
 "My_conversation": {"minute_limit": 250, "message_limit": 300,  "data_limit": 10, "operator":"TELE2", "nonthly_cost":380},
-"Premium": {"minute_limit": 2000, "message_limit": 500,  "data_limit": 60, "operator":str("TELE2"), "nonthly_cost":1500}
+"Premium": {"minute_limit": 2000, "message_limit": 500,  "data_limit": 60, "operator":"TELE2", "nonthly_cost":1500}
 "Warm_welcome_S": {"minute_limit": 250, "message_limit": 500,  "data_limit": 10, "operator":"megafon", "nonthly_cost":380},
 "Warm_welcome_L": {"minute_limit": 600, "message_limit": 700,  "data_limit": 35, "operator":"megafon", "nonthly_cost":550},
 "MegaTarif": {"minute_limit": 600, "message_limit": 500,  "data_limit": 35, "operator":"megafon", "nonthly_cost":550},
