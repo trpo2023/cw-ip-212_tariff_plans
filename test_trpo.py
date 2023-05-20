@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 from io import StringIO
-import trpo
+
 import json
 
 with open('tariff_plans.json', 'r') as f:
@@ -13,14 +13,14 @@ class TestTRPO(unittest.TestCase):
 
         # Тестовые данные
         minutes = 250
-        sms_count = 100
-        internet_gb = 5
+        messages = 100
+        data_usage = 5
 
         # Ожидаемый результат
         expected_result = 600
 
         # Вызов функции
-        result = trpo.calculate_total_cost(minutes, sms_count, internet_gb)
+        result = trpo.calculate_total_cost(minutes, messages, data_usage)
 
         # Проверка результата
         self.assertEqual(result, expected_result)
