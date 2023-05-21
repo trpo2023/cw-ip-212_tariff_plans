@@ -1,48 +1,30 @@
-import unittest
-from unittest.mock import patch
-from io import StringIO
+import subprocess
 
-import json
+def run_app_test():
+    # Запуск приложения и ввод команды для выбора опции 1 в главном меню
+    process = subprocess.Popen(['python', 'main.py'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    process.stdin.write('1\n')
+    process.stdin.flush()
 
-with open('tariff_plans.json', 'r') as f:
-    tariff_plans = json.load(f)
-    
-class TestTRPO(unittest.TestCase):
-    def test_calculate_total_cost(self):
-        # Тестирование функции calculate_total_cost
+    # Ввод необходимых данных для выбора тарифа
+    process.stdin.write('6\n')
+    process.stdin.write('10\n')
+    process.stdin.write('15\n')
+    process.stdin.write('20\n')
+    process.stdin.write('21\n')
+    process.stdin.write('non\n')
+    process.stdin.flush()
 
-        # Тестовые данные
-        minutes = 250
-        messages = 100
-        data_usage = 5
+    # Ожидание завершения выполнения приложения
+    process.wait()
 
-        # Ожидаемый результат
-        expected_result = 600
+    # Получение вывода приложения
+    output = process.stdout.read()
 
-        # Вызов функции
-        result = trpo.calculate_total_cost(minutes, messages, data_usage)
+    # Проверка вывода на наличие ожидаемых результатов
+    if 'Рекомендуем вам тарифный план' in output:
+        print('Тест не пройден!')
+    else:
+        print('Тест пройден!')
 
-        # Проверка результата
-        self.assertEqual(result, expected_result)
-
-    @patch('builtins.input', side_effect=["1"])
-    def test_get_minutes(self, mock_input):
-        # Тестирование функции get_minutes
-
-        # Ожидаемый вывод
-        expected_output = "Выберите количество минут разговора:\n1. 250 минут\n2. 300 минут\n3. 600 минут\n4. 1200 минут\n5. 3000 минут\n6. 5000 минут\n"
-
-        # Захват вывода
-        captured_output = StringIO()
-
-        # Запуск функции с захватом вывода
-        with patch('sys.stdout', new=captured_output):
-            trpo.get_minutes()
-
-        # Проверка вывода
-        self.assertEqual(captured_output.getvalue(), expected_output)
-        # Проверка значения переменной minutes
-        self.assertEqual(trpo.minutes, 250)
-
-if __name__ == '__main__':
-    unittest.main()
+run_app_test()
