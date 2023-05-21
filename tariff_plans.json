@@ -1,26 +1,172 @@
 {
-"MTS_access": {"minute_limit": 5000, "message_limit": 1000,  "data_limit": 50, "operator":"MTS", "nonthly_cost":790},
-"We_Are_MTS": {"minute_limit": 1200, "message_limit": 500,  "data_limit": 45, "operator":"MTS", "nonthly_cost":850},
-"The_tariff_is_higher ": {"minute_limit": 600, "message_limit": 600,  "data_limit": 35, "operator":"MTS", "nonthly_cost":600},
-"NOT_A_TARIFF": {"minute_limit": 300, "message_limit": 200,  "data_limit": 20, "operator":"MTS", "nonthly_cost":500},
-"ULTRA": {"minute_limit": 3000, "message_limit": 2000,  "data_limit": 60, "operator":"MTS", "nonthly_cost":1900},
-"Smart ": {"minute_limit": 250, "message_limit": 300,  "data_limit": 50, "operator":"MTS", "nonthly_cost":410},
-"Black": {"minute_limit": 1000, "message_limit": 1000,  "data_limit": 50, "operator":"TELE2", "nonthly_cost":800},
-"Super_Online+": {"minute_limit": 600, "message_limit": 500,  "data_limit": 45, "operator":"TELE2", "nonthly_cost":600},
-"My_Online+": {"minute_limit": 600, "message_limit": 400,  "data_limit": 35, "operator":"TELE2", "nonthly_cost":550},
-"My_Online": {"minute_limit": 600, "message_limit": 400,  "data_limit": 20, "operator":"TELE2", "nonthly_cost":450},
-"My_conversation": {"minute_limit": 250, "message_limit": 300,  "data_limit": 10, "operator":"TELE2", "nonthly_cost":380},
-"Premium": {"minute_limit": 2000, "message_limit": 500,  "data_limit": 60, "operator":"TELE2", "nonthly_cost":1500},
-"Warm_welcome_S": {"minute_limit": 250, "message_limit": 500,  "data_limit": 10, "operator":"megafon", "nonthly_cost":380},
-"Warm_welcome_L": {"minute_limit": 600, "message_limit": 700,  "data_limit": 35, "operator":"megafon", "nonthly_cost":550},
-"MegaTarif": {"minute_limit": 600, "message_limit": 500,  "data_limit": 35, "operator":"megafon", "nonthly_cost":550},
-"Maximum": {"minute_limit": 900, "message_limit": 200,  "data_limit": 45, "operator":"megafon", "nonthly_cost":750},
-"VIP": {"minute_limit": 1200, "message_limit": 300,  "data_limit": 50, "operator":"megafon", "nonthly_cost":1000},
-"Permium": {"minute_limit": 3000, "message_limit": 3000,  "data_limit": 60, "operator":"megafon", "nonthly_cost":2000},
-"Bee_Bazya": {"minute_limit": 600, "message_limit": 100,  "data_limit": 45, "operator":"Beeline", "nonthly_cost":650},
-"Dragon_Jung": {"minute_limit": 500, "message_limit": 500,  "data_limit": 45, "operator":"Beeline", "nonthly_cost":580},
-"cat_pus": {"minute_limit": 900, "message_limit": 800,  "data_limit": 45, "operator":"Beeline", "nonthly_cost":730},
-"panda_tapa": {"minute_limit": 300, "message_limit": 700,  "data_limit": 20, "operator":"Beeline", "nonthly_cost":470},
-"robot_ping": {"minute_limit": 500, "message_limit": 600,  "data_limit": 35, "operator":"Beeline", "nonthly_cost":530},
-"To_the_maximum!": {"minute_limit": 3000, "message_limit": 3000,  "data_limit": 60, "operator":"Beeline", "nonthly_cost":1800}
+    "tariff_plans": {
+        "MTS_access": {
+            "minutes": 5000,
+            "messages": 1000,
+            "internet": 50,
+            "operator": "MTS",
+            "monthly_cost": 790
+        },
+        "We_Are_MTS": {
+            "minutes": 1200,
+            "messages": 500,
+            "internet": 45,
+            "operator": "MTS",
+            "monthly_cost": 850
+        },
+        "The_tariff_is_higher": {
+            "minutes": 600,
+            "messages": 600,
+            "internet": 35,
+            "operator": "MTS",
+            "monthly_cost": 600
+        },
+        "NOT_A_TARIFF": {
+            "minutes": 300,
+            "messages": 200,
+            "internet": 20,
+            "operator": "MTS",
+            "monthly_cost": 500
+        },
+        "ULTRA": {
+            "minutes": 3000,
+            "messages": 2000,
+            "internet": 60,
+            "operator": "MTS",
+            "monthly_cost": 1900
+        },
+        "Smart": {
+            "minutes": 250,
+            "messages": 300,
+            "internet": 50,
+            "operator": "MTS",
+            "monthly_cost": 410
+        },
+        "Black": {
+            "minutes": 1000,
+            "messages": 1000,
+            "internet": 50,
+            "operator": "TELE2",
+            "monthly_cost": 800
+        },
+        "Super_Online+": {
+            "minutes": 600,
+            "messages": 500,
+            "internet": 45,
+            "operator": "TELE2",
+            "monthly_cost": 600
+        },
+        "My_Online+": {
+            "minutes": 600,
+            "messages": 400,
+            "internet": 35,
+            "operator": "TELE2",
+            "monthly_cost": 550
+        },
+        "My_Online": {
+            "minutes": 600,
+            "messages": 400,
+            "internet": 20,
+            "operator": "TELE2",
+            "monthly_cost": 450
+        },
+        "My_conversation": {
+            "minutes": 250,
+            "messages": 300,
+            "internet": 10,
+            "operator": "TELE2",
+            "monthly_cost": 380
+        },
+        "Premium": {
+            "minutes": 2000,
+            "messages": 500,
+            "internet": 60,
+            "operator": "TELE2",
+            "monthly_cost": 1500
+        },
+        "Warm_welcome_S": {
+            "minutes": 250,
+            "messages": 500,
+            "internet": 10,
+            "operator": "megafon",
+            "monthly_cost": 380
+        },
+        "Warm_welcome_L": {
+            "minutes": 600,
+            "messages": 700,
+            "internet": 35,
+            "operator": "megafon",
+            "monthly_cost": 550
+        },
+        "MegaTarif": {
+            "minutes": 600,
+            "messages": 500,
+            "internet": 35,
+            "operator": "megafon",
+            "monthly_cost": 550
+        },
+        "Maximum": {
+            "minutes": 900,
+            "messages": 200,
+            "internet": 45,
+            "operator": "megafon",
+            "monthly_cost": 750
+        },
+        "VIP": {
+            "minutes": 1200,
+            "messages": 300,
+            "internet": 50,
+            "operator": "megafon",
+            "monthly_cost": 1000
+        },
+        "Permium": {
+            "minutes": 3000,
+            "messages": 3000,
+            "internet": 60,
+            "operator": "megafon",
+            "monthly_cost": 2000
+        },
+        "Bee_Bazya": {
+            "minutes": 600,
+            "messages": 100,
+            "internet": 45,
+            "operator": "Beeline",
+            "monthly_cost": 650
+        },
+        "Dragon_Jung": {
+            "minutes": 500,
+            "messages": 500,
+            "internet": 45,
+            "operator": "Beeline",
+            "monthly_cost": 580
+        },
+        "cat_pus": {
+            "minutes": 900,
+            "messages": 800,
+            "internet": 45,
+            "operator": "Beeline",
+            "monthly_cost": 730
+        },
+        "panda_tapa": {
+            "minutes": 300,
+            "messages": 700,
+            "internet": 20,
+            "operator": "Beeline",
+            "monthly_cost": 470
+        },
+        "robot_ping": {
+            "minutes": 500,
+            "messages": 600,
+            "internet": 35,
+            "operator": "Beeline",
+            "monthly_cost": 530
+        },
+        "To_the_maximum!": {
+            "minutes": 3000,
+            "messages": 3000,
+            "internet": 60,
+            "operator": "Beeline",
+            "monthly_cost": 1800
+        }
+    }
 }
