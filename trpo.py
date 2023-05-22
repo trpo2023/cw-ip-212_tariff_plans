@@ -144,9 +144,12 @@ def choice_tariff():
             optimal_tariff_cost = tariff_cost
 
     if optimal_tariff is not None:
+        optimal_tariff_operator = tariff_plans[optimal_tariff]["operator"]
+
         print("======================")
         print("Рекомендуемый тариф:")
         print(f"Тариф: {optimal_tariff}")
+        print(f"Оператор: {optimal_tariff_operator}")
         print(f"Минуты: {minutes}")
         print(f"Сообщения: {messages}")
         print(f"Интернет: {internet} ГБ")
