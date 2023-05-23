@@ -3,7 +3,7 @@ from unittest.mock import patch
 import io
 import json
 import sys
-from main import main_menu, choice_tariff, print_tariff_plans
+from trpo import main_menu, choice_tariff, print_tariff_plans
 
 class TariffMenuTestCase(unittest.TestCase):
     def setUp(self):
