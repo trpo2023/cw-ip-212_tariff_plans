@@ -1,3 +1,4 @@
+import trpo
 import unittest
 from unittest.mock import patch
 import io
@@ -12,7 +13,7 @@ class TariffMenuTestCase(unittest.TestCase):
             self.data = json.load(file)
 
     @patch("builtins.input")
-    def test_main_menu_выбор_1(self, mock_input):
+    def test_main_menu(self, mock_input):
         mock_input.side_effect = ["1", "2", "1", "4", "3"]  # Симулируем ввод пользователя
         expected_output = (
             "Выберите оператора:\n"
@@ -26,7 +27,7 @@ class TariffMenuTestCase(unittest.TestCase):
             self.assertEqual(fake_output.getvalue().strip(), expected_output)
 
     @patch("builtins.input")
-    def test_choice_tariff_подбор_тарифа(self, mock_input):
+    def test_choice_tariff(self, mock_input):
         mock_input.side_effect = ["1", "2", "3", "4"]  # Симулируем ввод пользователя
         expected_output = (
             "======================\n"
@@ -45,7 +46,7 @@ class TariffMenuTestCase(unittest.TestCase):
             self.assertEqual(fake_output.getvalue().strip(), expected_output)
 
     @patch("sys.stdout", new_callable=io.StringIO)
-    def test_print_tariff_plans_просмотр_тарифов(self, mock_stdout):
+    def test_print_tariff_plans(self, mock_stdout):
         expected_output = (
             "Доступные тарифы:\n"
             "======================\n"
@@ -55,7 +56,7 @@ class TariffMenuTestCase(unittest.TestCase):
             "Интернет: 50 ГБ\n"
             "Оператор: MTS\n"
             "======================\n"
-            # Остальные тарифы...
+            
         )
         print_tariff_plans()
         self.assertEqual(mock_stdout.getvalue().strip(), expected_output)
