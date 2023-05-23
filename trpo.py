@@ -183,6 +183,7 @@ def choice_tariff():
         confirmation = input("Вы хотите подключить данный тариф? (Да/Нет): ")
         if confirmation.lower() == "да":
             print("Тариф успешно подключен!")
+            print("Выход в главное меню...")
         else:
             change_tariff = input("Хотите выбрать другой тариф? (Да/Нет): ")
             if change_tariff.lower() == "да":
