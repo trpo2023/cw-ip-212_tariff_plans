@@ -129,6 +129,8 @@ def choice_tariff():
     minutes = get_minutes()
     messages = choose_messages()
     internet = choose_internet()
+    
+    import animation 
 
     optimal_tariff = None
     optimal_tariff_cost = float('inf')
@@ -146,6 +148,7 @@ def choice_tariff():
     if optimal_tariff is not None:
         optimal_tariff_operator = tariff_plans[optimal_tariff]["operator"]
 
+        
         print("======================")
         print("Рекомендуемый тариф:")
         print(f"Тариф: {optimal_tariff}")

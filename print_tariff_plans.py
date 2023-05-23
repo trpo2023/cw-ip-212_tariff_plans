@@ -1,11 +1,15 @@
-import json
-with open('tariff_plans.json', 'r') as f:
-    tariff_plans = json.load(f)
+
 def print_tariff_plans():
-    for plan_name, tariff_params in tariff_plans.items():
-        print(f"Тариф {plan_name}:")
-        print(f"\t- количество минут: {tariff_params['minute_limit']}")
-        print(f"\t- количество сообщений: {tariff_params['message_limit']}")
-        print(f"\t- количество интернет трафика: {tariff_params['data_limit']} Гб")
-        print(f"\t- оператор: {tariff_params['operator']}")
-        print(f"\t- стоимость: {tariff_params['nonthly_cost']} руб.")
+    with open("tariff_plans.json") as file:
+        data = json.load(file)
+
+    tariff_plans = data["tariff_plans"]
+
+    print("Доступные тарифы:")
+    for tariff_name, tariff_details in tariff_plans.items():
+        print("======================")
+        print(f"Тариф: {tariff_name}")
+        print(f"Минуты: {tariff_details['minutes']}")
+        print(f"Сообщения: {tariff_details['messages']}")
+        print(f"Интернет: {tariff_details['internet']} ГБ")
+        print(f"Оператор: {tariff_details['operator']}")
