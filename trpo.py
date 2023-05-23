@@ -6,6 +6,7 @@ def clear_console():
 
 def main_menu():
     while True:
+        clear_console()
         print("======================")
         print("      ГЛАВНОЕ МЕНЮ     ")
         print("======================")
@@ -53,6 +54,7 @@ def choice_tariff():
             return 5000
 
     def choose_messages():
+        clear_console()
         print("Выберите количество сообщений:")
         print("1. 200 сообщений")
         print("2. 300 сообщений")
@@ -87,6 +89,7 @@ def choice_tariff():
             return 3000
 
     def choose_internet():
+        clear_console()
         print("Выберите количество интернет-трафика:")
         print("1. 1 ГБ")
         print("2. 3 ГБ")
@@ -120,42 +123,61 @@ def choice_tariff():
         elif internet_choice == "9":
             return 50
 
+    def choose_operator():
+        clear_console()
+        print("Выберите оператора:")
+        print("1. MTS")
+        print("2. Beeline")
+        print("3. TELE2")
+        print("4. Megafon")
+        operator_choice = input("Введите номер выбранного варианта: ")
+        while operator_choice not in ["1", "2", "3", "4"]:
+            operator_choice = input("Некорректный выбор. Введите номер выбранного варианта: ")
+
+        if operator_choice == "1":
+            return "MTS"
+        elif operator_choice == "2":
+            return "Beeline"
+        elif operator_choice == "3":
+            return "TELE2"
+        elif operator_choice == "4":
+            return "Megafon"
+
     with open("tariff_plans.json") as file:
         data = json.load(file)
-        
+
     tariff_plans = data["tariff_plans"]
 
     print("Укажите ваши затраты:")
     minutes = get_minutes()
     messages = choose_messages()
     internet = choose_internet()
-    
-    import animation 
+    operator = choose_operator()
 
     optimal_tariff = None
     optimal_tariff_cost = float('inf')
 
     for tariff_name, tariff_details in tariff_plans.items():
-        tariff_minutes = tariff_details["minutes"]
-        tariff_messages = tariff_details["messages"]
-        tariff_internet = tariff_details["internet"]
-        tariff_cost = tariff_minutes + tariff_messages + tariff_internet
+        if tariff_details["operator"] == operator:
+            tariff_minutes = tariff_details["minutes"]
+            tariff_messages = tariff_details["messages"]
+            tariff_internet = tariff_details["internet"]
+            tariff_cost = tariff_minutes + tariff_messages + tariff_internet
 
-        if tariff_minutes >= minutes and tariff_messages >= messages and tariff_internet >= internet and tariff_cost < optimal_tariff_cost:
-            optimal_tariff = tariff_name
-            optimal_tariff_cost = tariff_cost
+            if tariff_minutes >= minutes and tariff_messages >= messages and tariff_internet >= internet and tariff_cost < optimal_tariff_cost:
+                optimal_tariff = tariff_name
+                optimal_tariff_cost = tariff_cost
 
     if optimal_tariff is not None:
         optimal_tariff_operator = tariff_plans[optimal_tariff]["operator"]
 
-        
         print("======================")
         print("Рекомендуемый тариф:")
         print(f"Тариф: {optimal_tariff}")
         print(f"Оператор: {optimal_tariff_operator}")
-        print(f"Минуты: {minutes}")
-        print(f"Сообщения: {messages}")
-        print(f"Интернет: {internet} ГБ")
+        print(f"Минуты: {tariff_plans[optimal_tariff]['minutes']}")
+        print(f"Сообщения: {tariff_plans[optimal_tariff]['messages']}")
+        print(f"Интернет: {tariff_plans[optimal_tariff]['internet']} ГБ")
         print("======================")
 
         confirmation = input("Вы хотите подключить данный тариф? (Да/Нет): ")
