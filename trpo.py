@@ -6,7 +6,7 @@ def clear_console():
 
 def main_menu():
     while True:
-        clear_console()
+        
         print("======================")
         print("      ГЛАВНОЕ МЕНЮ     ")
         print("======================")
