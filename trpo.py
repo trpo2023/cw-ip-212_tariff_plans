@@ -125,7 +125,7 @@ def choice_tariff():
 
     def choose_operator():
         clear_console()
-        print("Выберите оператора:")
+        print("Выберите желаемого оператора:")
         print("1. MTS")
         print("2. Beeline")
         print("3. TELE2")
