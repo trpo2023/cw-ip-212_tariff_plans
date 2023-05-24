@@ -182,7 +182,7 @@ def choice_tariff():
 
         confirmation = input("Вы хотите подключить данный тариф? (Да/Нет): ")
         if confirmation.lower() == "да":
-            print("Тариф успешно подключен!")
+            print(f"Тариф успешно подключен! Ежемесячная плата составит: {tariff_plans[optimal_tariff]['monthly_cost']} рублей.")
             print("Выход в главное меню...")
         else:
             change_tariff = input("Хотите выбрать другой тариф? (Да/Нет): ")
