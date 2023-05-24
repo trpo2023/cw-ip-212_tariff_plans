@@ -61,5 +61,5 @@ class TariffMenuTestCase(unittest.TestCase):
         print_tariff_plans()
         self.assertEqual(mock_stdout.getvalue().strip(), expected_output)
 
-if __name__ == "__main__":
-    unittest.main()
+if __name__ == "__trpo__":
+    unittest.trpo()
