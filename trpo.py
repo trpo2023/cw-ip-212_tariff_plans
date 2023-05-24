@@ -141,7 +141,7 @@ def choice_tariff():
         elif operator_choice == "3":
             return "TELE2"
         elif operator_choice == "4":
-            return "Megafon"
+            return "megafon"
 
     with open("tariff_plans.json") as file:
         data = json.load(file)
@@ -182,13 +182,16 @@ def choice_tariff():
 
         confirmation = input("Вы хотите подключить данный тариф? (Да/Нет): ")
         if confirmation.lower() == "да":
+            clear_console()
             print(f"Тариф успешно подключен! Ежемесячная плата составит: {tariff_plans[optimal_tariff]['monthly_cost']} рублей.")
             print("Выход в главное меню...")
         else:
             change_tariff = input("Хотите выбрать другой тариф? (Да/Нет): ")
             if change_tariff.lower() == "да":
+                clear_console()
                 choice_tariff()
             else:
+                clear_console()
                 print("Подключение тарифа отменено.")
                 print("Спасибо за использование нашего приложения!!!")
     else:
