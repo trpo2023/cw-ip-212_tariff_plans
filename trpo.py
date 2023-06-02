@@ -58,8 +58,10 @@ def choice_tariff(tariff_plans):
 
     def choose_operator():
         operators = ["MTS", "Beeline", "TELE2", "Megafon"]
-        return choose_from_options("Выберите оператора:", operators)
+        return choose_from_options("Выберите желаемого оператора:", operators)
 
+    print("Укажите ваши затраты:")
+    minutes = get_minutes()
     messages = choose_messages()
     internet = choose_internet()
     operator = choose_operator()
