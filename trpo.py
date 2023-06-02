@@ -4,6 +4,7 @@ import json
 def clear_console():
     os.system('cls')
 
+# меню
 def main_menu():
     while True:
         
@@ -27,6 +28,7 @@ def main_menu():
         else:
             print("Некорректный выбор. Попробуйте еще раз.")
 
+# выбор тарифа (все сразу в одном цикле)
 def choice_tariff():
     def get_minutes():
         print("Выберите количество минут разговора:")
@@ -212,6 +214,6 @@ def print_tariff_plans():
         print(f"Интернет: {tariff_details['internet']} ГБ")
         print(f"Оператор: {tariff_details['operator']}")
 
-# Запуск программы
+
 clear_console()
 main_menu()
