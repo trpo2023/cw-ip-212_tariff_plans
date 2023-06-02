@@ -31,5 +31,5 @@ class TRPOTestCase(unittest.TestCase):
                 trpo.print_tariff_plans()
                 self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-if __name__ == "__main__":
-    unittest.main()
+if __name__ == "__trpo__":
+    unittest.trpo()
