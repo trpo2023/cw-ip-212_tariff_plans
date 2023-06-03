@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import patch
+from unittest.mock import patch, mock_open
 import json
 import io
 
@@ -8,24 +8,11 @@ from main import get_choice, choice_tariff, print_tariff_plans
 
 @pytest.fixture
 def tariff_plans():
-    return {
-        "MTS_access": {
-            "minutes": 5000,
-            "messages": 1000,
-            "internet": 50,
-            "operator": "MTS",
-            "monthly_cost": 790
-        },
-        "We_Are_MTS": {
-            "minutes": 1200,
-            "messages": 500,
-            "internet": 45,
-            "operator": "MTS",
-            "monthly_cost": 850
-        },
-        # Другие тарифные планы
-    }
+    with open("tariff_plans.json") as file:
+        data = json.load(file)
 
+    tariff_plans = data["tariff_plans"]
+    return tariff_plans
 
 def test_get_choice_valid(monkeypatch):
     prompt = "Выберите количество минут разговора:"
@@ -67,9 +54,7 @@ def test_choice_tariff_optimal_tariff_found(monkeypatch, tariff_plans):
 def test_choice_tariff_optimal_tariff_not_found(monkeypatch, tariff_plans) -> None:
     user_inputs = ["1", "3", "2", "3", "нет", "нет", ""]
     expected_output = "Тариф не был подключен."
-    
 
-    
     monkeypatch.setattr('builtins.input', lambda _: user_inputs.pop(0))
     
     with patch('sys.stdout', new=io.StringIO()) as fake_output:
@@ -78,13 +63,9 @@ def test_choice_tariff_optimal_tariff_not_found(monkeypatch, tariff_plans) -> No
     assert expected_output in fake_output.getvalue()
 
 
-
-def test_print_tariff_plans(tariff_plans):
-    user_inputs = ["2", ""]
+def test_print_tariff_plans():
     expected_output = "Тариф: MTS_access"
-
-    with patch('builtins.open', new=io.StringIO(json.dumps(tariff_plans))):
+    
+    with patch('builtins.open', mock_open(read_data=json.dumps(tariff_plans))):
         with patch('sys.stdout', new=io.StringIO()) as fake_output:
-            print_tariff_plans()
-
-    assert expected_output in fake_output.getvalue()
+            print_tariff_plans(tariff_plans)

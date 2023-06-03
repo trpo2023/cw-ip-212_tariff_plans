@@ -115,8 +115,8 @@ def print_tariff_plans():
         print(f"Оператор: {tariff_details['operator']}")
         print(f"Минуты разговора: {tariff_details['minutes']}")
         print(f"Количество сообщений: {tariff_details['messages']}")
-        print(f"Интернет-трафик: {tariff_details['internet']}" + "ГБ")
-        print(f"Стоимость: {tariff_details['monthly_cost']}" + "Рублей")
+        print(f"Интернет-трафик: {tariff_details['internet']}" + " ГБ")
+        print(f"Стоимость: {tariff_details['monthly_cost']}" + " Рублей")
         print("======================")
 
     input("Нажмите Enter, чтобы вернуться в главное меню.")
