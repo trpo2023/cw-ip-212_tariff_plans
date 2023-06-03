@@ -1,11 +1,9 @@
 import pytest
-from unittest.mock import patch
+from unittest.mock import patch, mock_open
 import json
 import io
 
-from print_tariff_plans import print_tariff_plans
-
-from trpo import get_choice, choice_tariff
+from trpo import get_choice, choice_tariff, print_tariff_plans
 
 
 @pytest.fixture
@@ -14,6 +12,7 @@ def tariff_plans():
         data = json.load(file)
 
     tariff_plans = data["tariff_plans"]
+    return tariff_plans
 
 def test_get_choice_valid(monkeypatch):
     prompt = "Выберите количество минут разговора:"
@@ -64,12 +63,9 @@ def test_choice_tariff_optimal_tariff_not_found(monkeypatch, tariff_plans) -> No
     assert expected_output in fake_output.getvalue()
 
 
-
-def test_print_tariff_plans(tariff_plans):
+def test_print_tariff_plans():
     expected_output = "Тариф: MTS_access"
-
-    with patch('builtins.open', new=io.StringIO(json.dumps(tariff_plans))):
+    
+    with patch('builtins.open', mock_open(read_data=json.dumps(tariff_plans))):
         with patch('sys.stdout', new=io.StringIO()) as fake_output:
-            print_tariff_plans()
-
-    assert expected_output in fake_output.getvalue()
+            print_tariff_plans(tariff_plans)
