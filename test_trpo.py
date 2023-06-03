@@ -1,35 +1,85 @@
-import io
+import pytest
+from unittest.mock import patch
 import json
-import unittest
-import unittest.mock
-import trpo
+import io
 
-class TRPOTestCase(unittest.TestCase):
-    def test_choice_tariff(self):
-        user_input = "1\n1\n1\nДа\n"
-        with unittest.mock.patch("builtins.input", side_effect=user_input.split()):
-            trpo.choice_tariff.get_choice = trpo.get_choice  # Замена функции get_choice в choice_tariff.py
-            trpo.choice_tariff()
+from main import get_choice, choice_tariff, print_tariff_plans
 
-        # Проверка значений переменных для оптимального тарифа
-        self.assertEqual(trpo.choice_tariff.optimal_tariff_operator, "MTS")
-        self.assertEqual(trpo.choice_tariff.tariff_optimal, "MTS_access")
-        self.assertEqual(trpo.choice_tariff.minute_optimal, 5000)
-        self.assertEqual(trpo.choice_tariff.message_optimal, 1000)
-        self.assertEqual(trpo.choice_tariff.internet_optimal, 50)
 
-    def test_print_tariff_plans(self):
-        with open("tariff_plans.json") as file:
-            data = json.load(file)
-        expected_output = ""
-        for tariff_plan in data["tariff_plans"]:
-            plan = data["tariff_plans"][tariff_plan]
-            expected_output += f"Тариф: {tariff_plan}\nОператор: {plan['operator']}\nМинуты: {plan['minutes']}\nСообщения: {plan['messages']}\nИнтернет: {plan['internet']} ГБ\n======================\n"
-        
-        with unittest.mock.patch("builtins.input", return_value=""):
-            with unittest.mock.patch("sys.stdout", new=io.StringIO()) as mock_stdout:
-                trpo.print_tariff_plans()
-                self.assertEqual(mock_stdout.getvalue(), expected_output)
+@pytest.fixture
+def tariff_plans():
+    return {
+        "MTS_access": {
+            "minutes": 5000,
+            "messages": 1000,
+            "internet": 50,
+            "operator": "MTS",
+            "monthly_cost": 790
+        },
+        "We_Are_MTS": {
+            "minutes": 1200,
+            "messages": 500,
+            "internet": 45,
+            "operator": "MTS",
+            "monthly_cost": 850
+        },
+        # Другие тарифные планы
+    }
 
-if __name__ == "__trpo__":
-    unittest.trpo()
+
+def test_get_choice_valid(monkeypatch):
+    prompt = "Выберите количество минут разговора:"
+    options = ["250 минут", "300 минут", "600 минут"]
+    user_choice = "1"
+
+    monkeypatch.setattr('builtins.input', lambda _: user_choice)
+
+    choice = get_choice(prompt, options, user_choice)
+
+    assert choice == "250 минут"
+
+
+def test_get_choice_invalid_then_valid(monkeypatch):
+    prompt = "Выберите количество минут разговора:"
+    options = ["250 минут", "300 минут", "600 минут"]
+    user_choices = ["4", "2"]
+
+    monkeypatch.setattr('builtins.input', lambda _: user_choices.pop(0))
+
+    choice = get_choice(prompt, options, user_choices[0])
+
+    assert choice == "300 минут"
+
+
+def test_choice_tariff_optimal_tariff_found(monkeypatch, tariff_plans):
+    user_inputs = ["1", "2", "3", "MTS", "да"]
+    expected_output = "Тариф успешно подключен!"
+
+    monkeypatch.setattr('builtins.input', lambda _: user_inputs.pop(0))
+
+    with patch('sys.stdout', new=io.StringIO()) as fake_output:
+        choice_tariff(*user_inputs, tariff_plans=tariff_plans)
+
+    assert expected_output in fake_output.getvalue()
+
+
+def test_choice_tariff_optimal_tariff_not_found(monkeypatch, tariff_plans):
+    user_inputs = ["1", "2", "3", "MTS", "нет"]
+    expected_output = "Тариф не был подключен."
+
+    monkeypatch.setattr('builtins.input', lambda _: user_inputs.pop(0))
+
+    with patch('sys.stdout', new=io.StringIO()) as fake_output:
+        choice_tariff(*user_inputs, tariff_plans=tariff_plans)
+
+    assert expected_output in fake_output.getvalue()
+
+
+def test_print_tariff_plans(tariff_plans):
+    expected_output = "Тариф: MTS_access"
+
+    with patch('builtins.open', new=io.StringIO(json.dumps(tariff_plans))):
+        with patch('sys.stdout', new=io.StringIO()) as fake_output:
+            print_tariff_plans()
+
+    assert expected_output in fake_output.getvalue()
