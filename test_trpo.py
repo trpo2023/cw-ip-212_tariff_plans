@@ -10,24 +10,10 @@ from trpo import get_choice, choice_tariff
 
 @pytest.fixture
 def tariff_plans():
-    return {
-        "MTS_access": {
-            "minutes": 5000,
-            "messages": 1000,
-            "internet": 50,
-            "operator": "MTS",
-            "monthly_cost": 790
-        },
-        "We_Are_MTS": {
-            "minutes": 1200,
-            "messages": 500,
-            "internet": 45,
-            "operator": "MTS",
-            "monthly_cost": 850
-        },
-        # Другие тарифные планы
-    }
+    with open("tariff_plans.json") as file:
+        data = json.load(file)
 
+    tariff_plans = data["tariff_plans"]
 
 def test_get_choice_valid(monkeypatch):
     prompt = "Выберите количество минут разговора:"
