@@ -3,7 +3,8 @@ from unittest.mock import patch
 import json
 import io
 
-from main import get_choice, choice_tariff, print_tariff_plans
+from .main import get_choice, choice_tariff
+from .print_tariff_plans import print_tariff_plans
 
 
 @pytest.fixture
@@ -77,9 +78,9 @@ def test_choice_tariff_optimal_tariff_not_found(monkeypatch, tariff_plans) -> No
 
 
 
+
 def test_print_tariff_plans(tariff_plans):
     expected_output = "Тариф: MTS_access"
-
     with patch('builtins.open', new=io.StringIO(json.dumps(tariff_plans))):
         with patch('sys.stdout', new=io.StringIO()) as fake_output:
             print_tariff_plans()
