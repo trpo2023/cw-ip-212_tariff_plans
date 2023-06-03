@@ -38,7 +38,7 @@ def get_choice(prompt, options, user_choice):
         choice = input("Некорректный выбор. Введите номер выбранного варианта: ")
     return options[int(choice) - 1]
 
-def choice_tariff(*user_input):
+def choice_tariff(*user_input, tariff_plans=None):
     with open("tariff_plans.json") as file:
         data = json.load(file)
 
