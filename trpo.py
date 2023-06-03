@@ -3,7 +3,7 @@ import json
 
 def clear_console():
     os.system('cls')
-#Меню
+
 def main_menu():
     while True:
         clear_console()
