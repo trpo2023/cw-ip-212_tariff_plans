@@ -1,7 +1,9 @@
 import os
 import json
+
 def clear_console():
     os.system('cls')
+
 def main_menu():
     while True:
         clear_console()
@@ -15,33 +17,40 @@ def main_menu():
         choice = input("Выберите опцию (введите номер): ")
         if choice == "1":
             clear_console()
+            import animation
             choice_tariff()
         elif choice == "2":
             clear_console()
+            import animation
             print_tariff_plans()
         elif choice == "3":
-            print("Выход из программы...")
+            import exit_program
             break
         else:
             print("Некорректный выбор. Попробуйте еще раз.")
+
 def get_choice(prompt, options, user_choice):
     print(prompt)
     for i, option in enumerate(options, start=1):
         print(f"{i}. {option}")
-    choice = user_choice
+    choice = input("Введите свой выбор: ")
     while choice not in map(str, range(1, len(options) + 1)):
         choice = input("Некорректный выбор. Введите номер выбранного варианта: ")
     return options[int(choice) - 1]
+
 def choice_tariff(*user_input, tariff_plans=None):
     with open("tariff_plans.json") as file:
         data = json.load(file)
     tariff_plans = data["tariff_plans"]
     print("Укажите ваши затраты:")
     minutes = get_choice("Выберите количество минут разговора:", ["250 минут", "300 минут", "600 минут", "1200 минут", "3000 минут", "5000 минут"], "")
+    clear_console()
     messages = get_choice("Выберите количество сообщений:", ["200 сообщений", "300 сообщений", "400 сообщений", "500 сообщений", "600 сообщений", "700 сообщений", "800 сообщений", "1000 сообщений", "3000 сообщений"], "")
+    clear_console()
     internet = get_choice("Выберите количество интернет-трафика:", ["10 ГБ", "20 ГБ", "35 ГБ", "45 ГБ", "50 ГБ", "60 ГБ"], "")
     clear_console()
     operator = get_choice("Выберите желаемого оператора:", ["MTS", "Beeline", "TELE2", "Megafon"], "")
+    clear_console()
     optimal_tariff = None
     optimal_tariff_monthly_cost = float('inf')
     while optimal_tariff is None:
@@ -71,18 +80,25 @@ def choice_tariff(*user_input, tariff_plans=None):
         print(f"Интернет-трафик: {internet_optimal} ГБ")
         print(f"Стоимость: {tariff_monthly_cost_optimal} рублей.")
         confirm = input("Вы хотите подключить этот тариф? (да/нет): ")
-        if confirm.lower() == "да":
+        while confirm.lower() not in ["да", "нет"]:
+            confirm = input("Некорректный выбор. Повторите попытку снова: ")
+        if confirm == "да":
             # Код для подключения тарифа
             print("Тариф успешно подключен!")
-        else:
+        elif confirm == "нет":
             change_tariff = input("Хотите изменить выбранный тариф? (да/нет): ")
+            while change_tariff.lower() not in ["да", "нет"]:
+                change_tariff = input("Некорректный выбор. Повторите попытку снова: ")
             if change_tariff.lower() == "да":
                 choice_tariff()
-            else:
+            elif change_tariff.lower() == "нет":
                 print("Тариф не был подключен.")
+        else:
+            print("Некорректный выбор. Тариф не был подключен.")
     else:
         print("Извините, для ваших затрат не найдено подходящего тарифного плана.")
     input("Нажмите Enter, чтобы вернуться в главное меню.")
+
 def print_tariff_plans():
     with open("tariff_plans.json") as file:
         data = json.load(file)
@@ -92,12 +108,11 @@ def print_tariff_plans():
         print(f"Оператор: {tariff_details['operator']}")
         print(f"Минуты разговора: {tariff_details['minutes']}")
         print(f"Количество сообщений: {tariff_details['messages']}")
-        print(f"Интернет-трафик: {tariff_details['internet']}" + "ГБ")
-        print(f"Стоимость: {tariff_details['monthly_cost']}" + "Рублей")
-        print(f"Интернет-трафик: {tariff_details['internet']}" + " ГБ")
-        print(f"Стоимость: {tariff_details['monthly_cost']}" + " Рублей")
+        print(f"Интернет-трафик: {tariff_details['internet']} ГБ")
+        print(f"Стоимость: {tariff_details['monthly_cost']} рублей")
         print("======================")
 
     input("Нажмите Enter, чтобы вернуться в главное меню.")
+
 if __name__ == "__main__":
     main_menu()
