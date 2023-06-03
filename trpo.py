@@ -29,14 +29,15 @@ def main_menu():
         else:
             print("Некорректный выбор. Попробуйте еще раз.")
 
-def get_choice(prompt, options, user_choice):
-    print(prompt)
-    for i, option in enumerate(options, start=1):
-        print(f"{i}. {option}")
-    choice = user_choice
-    while choice not in map(str, range(1, len(options) + 1)):
-        choice = input("Некорректный выбор. Введите номер выбранного варианта: ")
-    return options[int(choice) - 1]
+def choice_tariff():
+    def get_choice(prompt, options, user_choice):
+        print(prompt)
+        for i, option in enumerate(options, start=1):
+            print(f"{i}. {option}")
+        choice = user_choice
+        while choice not in map(str, range(1, len(options) + 1)):
+            choice = input("Некорректный выбор. Введите номер выбранного варианта: ")
+        return options[int(choice) - 1]
 
 def choice_tariff(*user_input, tariff_plans=None):
     with open("tariff_plans.json") as file:

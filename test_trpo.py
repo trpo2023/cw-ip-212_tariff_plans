@@ -3,7 +3,7 @@ from unittest.mock import patch, mock_open
 import json
 import io
 
-from trpo import get_choice, choice_tariff, print_tariff_plans
+from main import get_choice, choice_tariff, print_tariff_plans
 
 
 @pytest.fixture
