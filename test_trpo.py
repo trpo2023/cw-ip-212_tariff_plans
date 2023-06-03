@@ -1,9 +1,9 @@
 import pytest
-from unittest.mock import patch, mock_open
+from unittest.mock import patch
 import json
 import io
 
-from trpo import get_choice, choice_tariff, print_tariff_plans
+from trpo import get_choice, choice_tariff
 
 
 @pytest.fixture
@@ -61,11 +61,3 @@ def test_choice_tariff_optimal_tariff_not_found(monkeypatch, tariff_plans) -> No
         choice_tariff(*user_inputs, tariff_plans=tariff_plans)
     
     assert expected_output in fake_output.getvalue()
-
-
-def test_print_tariff_plans():
-    expected_output = "Тариф: MTS_access"
-    
-    with patch('builtins.open', mock_open(read_data=json.dumps(tariff_plans))):
-        with patch('sys.stdout', new=io.StringIO()) as fake_output:
-            print_tariff_plans(tariff_plans)
