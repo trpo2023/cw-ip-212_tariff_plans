@@ -3,7 +3,7 @@ import json
 
 def clear_console():
     os.system('cls')
-#Меню
+
 def main_menu():
     while True:
         clear_console()
@@ -39,7 +39,7 @@ def choice_tariff():
             choice = input("Некорректный выбор. Введите номер выбранного варианта: ")
         return options[int(choice) - 1]
 
-def choice_tariff(*user_input):
+def choice_tariff(*user_input, tariff_plans=None):
     with open("tariff_plans.json") as file:
         data = json.load(file)
 
