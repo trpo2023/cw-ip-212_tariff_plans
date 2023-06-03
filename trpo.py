@@ -4,14 +4,40 @@ import json
 def clear_console():
     os.system('cls')
 
-def get_choice(prompt, options, user_choice):
-    print(prompt)
-    for i, option in enumerate(options, start=1):
-        print(f"{i}. {option}")
-    choice = user_choice
-    while choice not in map(str, range(1, len(options) + 1)):
-        choice = input("Некорректный выбор. Введите номер выбранного варианта: ")
-    return options[int(choice) - 1]
+def main_menu():
+    while True:
+        clear_console()
+        print("======================")
+        print("      ГЛАВНОЕ МЕНЮ     ")
+        print("======================")
+        menu_options = ["Подобрать тариф", "Просмотреть все тарифы", "Выйти из программы"]
+        for i, option in enumerate(menu_options, start=1):
+            print(f"{i}. {option}")
+        print("======================")
+
+        choice = input("Выберите опцию (введите номер): ")
+
+        if choice == "1":
+            clear_console()
+            choice_tariff()
+        elif choice == "2":
+            clear_console()
+            print_tariff_plans()
+        elif choice == "3":
+            print("Выход из программы...")
+            break
+        else:
+            print("Некорректный выбор. Попробуйте еще раз.")
+
+def choice_tariff():
+    def get_choice(prompt, options, user_choice):
+        print(prompt)
+        for i, option in enumerate(options, start=1):
+            print(f"{i}. {option}")
+        choice = user_choice
+        while choice not in map(str, range(1, len(options) + 1)):
+            choice = input("Некорректный выбор. Введите номер выбранного варианта: ")
+        return options[int(choice) - 1]
 
 def choice_tariff(*user_input):
     with open("tariff_plans.json") as file:
@@ -59,7 +85,20 @@ def choice_tariff(*user_input):
         print(f"Тариф: {optimal_tariff}")
         print(f"Минуты разговора: {minute_optimal}")
         print(f"Количество сообщений: {message_optimal}")
-        print(f"Интернет-трафик: {internet_optimal}")
+        print(f"Интернет-трафик: {internet_optimal} ГБ")
+        print(f"Стоимость: {tariff_monthly_cost_optimal} рублей.")
+
+        confirm = input("Вы хотите подключить этот тариф? (да/нет): ")
+        if confirm.lower() == "да":
+            # Код для подключения тарифа
+            print("Тариф успешно подключен!")
+        else:
+            change_tariff = input("Хотите изменить выбранный тариф? (да/нет): ")
+            if change_tariff.lower() == "да":
+                choice_tariff()
+            else:
+                print("Тариф не был подключен.")
+
     else:
         print("Извините, для ваших затрат не найдено подходящего тарифного плана.")
 
