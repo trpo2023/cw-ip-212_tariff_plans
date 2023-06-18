@@ -1,7 +1,7 @@
 import os
 import json
 
-def clear_console():
+deef clear_console():
     os.system('cls')
 
 def main_menu():
